@@ -60,11 +60,16 @@ const postUploadMain = (req, res) => {
   const files = req.files;
   let resultParams = [];
 
+  console.log(`?? ${encodeURIComponent(files[0].originalname)}`);
+  console.log(`!! ${decodeURIComponent(files[0].originalname)}`);
+
   try {
     let uploadFiles = files.map((item) => {
+      //https://calatheas.tistory.com/entry/aws-s3-%EB%A9%94%ED%83%80%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
       let params = {
         Bucket: process.env.NAVER_CLOUD_BUCKET_NAME,
-        Key: location + seoulDate + "_" + item.originalname,
+        Key: location + seoulDate + "_" + decodeURI(item.originalname),
+        // Key: location + seoulDate + "_" + item.originalname,
         Body: item.buffer,
         ACL: "public-read",
       };

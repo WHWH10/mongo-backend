@@ -17,7 +17,7 @@ const checkFileType = (params, result) => {
 //https://dalkomit.tistory.com/120
 //https://stackoverflow.com/questions/43534461/array-of-subdocuments-in-mongoose
 //비정형데이터
-const savefMriFile = (
+const savefMriFile = async (
   params,
   result,
   originalname,
@@ -53,7 +53,7 @@ const savefMriFile = (
     ],
   });
 
-  labCA.save((err) => {
+  await labCA.save((err) => {
     if (err) {
       console.log(err);
     } else {

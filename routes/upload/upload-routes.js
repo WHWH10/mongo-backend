@@ -1,4 +1,3 @@
-const e = require("express");
 const express = require("express");
 const uploadController = require("../../controller/upload/upload-controller");
 

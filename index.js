@@ -7,6 +7,9 @@ const mongoose = require("mongoose");
 
 const directoryRouter = require("./routes/directory/dirctory-routes");
 const uploadRouter = require("./routes/upload/upload-routes");
+const apiRouter = require("./routes/api/api-routes");
+// 정형데이터/비정형데이터 원래 테이블 기준대로
+const uploadApiRouter = require("./routes/upload-api/upload-api-routes");
 
 // const logger = require("./config/customLogger");
 // require("dotenv").config({ path: path.join(__dirname, "./.env.dev") });
@@ -36,6 +39,8 @@ app.use(morgan(morganFormat, { httpLogStream }));
 // 라우터 설정
 app.use("", directoryRouter);
 app.use("/upload", uploadRouter);
+app.use("/api", apiRouter);
+app.use("/api/upload", uploadApiRouter);
 // app.use("", categoryRouter);
 // app.use("/login", loginRouter);
 // app.use("/upload", uploadRouter);
@@ -49,6 +54,7 @@ mongoose
   })
   .then(() => console.log("Successfully connected to mongodb"))
   .catch((e) => console.log(e));
+mongoose.set("debug", true);
 
 app.listen(process.env.PORT, (req, res) => {
   console.log(`Listening at Prot :: ${process.env.PORT}`);

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const autoIdSetter = require("../auto-id-setter");
+const Schema = mongoose.Schema;
 // const FileCategory = require("./file-category-model");
 // const ObjectStorage = require("./objectstorage-model");
 const moment = require("moment");
@@ -22,6 +23,7 @@ autoIdSetter(FileCategorySchema, mongoose, "FileCategory", "fileCategoryId");
 const FileCategory = mongoose.model("FileCategory", FileCategorySchema);
 
 const ObjectStorageSchema = new mongoose.Schema({
+  // _id: Schema.Types.ObjectId,
   objectStorageUrl: { type: String },
   objectStorageKey: { type: String },
   created_at: { type: String, required: true },
@@ -49,4 +51,5 @@ module.exports = {
   LabCA,
   FileCategory,
   ObjectStorage,
+  // ObjectStorageSchema,
 };
